@@ -1,0 +1,57 @@
+'''
+
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: 3
+
+Example 2:
+
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
+
+Method 1: Sort the Array using a fast sorting algo like Merge sort or quick sort and then traverse through the array using a counter variable.
+
+Time: N(Log(N)) | Space O(1)
+
+Method 2: Use a hashtable to count the frequenices of elements that occur in array and then return the largest one
+
+Time: O(N) | Space O(N) 
+
+Method 3: Boyer Moore Majority Vote
+
+Time: O(N) | Space O(1)
+''''
+
+#Method 2: 
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        hash = {}
+        for i in nums:
+            if i in hash:
+                hash[i] += 1
+            else:
+                hash[i] = 1
+        majElement = max(hash, key=hash.get)
+        return majElement
+       
+ #Method 3:
+  def majorityElement(self, nums):
+        candidate = nums[0]
+        count = 1
+        for i in range(1,len(nums)):
+            if nums[i] == candidate:
+                count += 1
+            else:
+                count -= 1
+            if count == 0:
+                candidate = nums[i]
+                count = 1
+        
+        return candidate
