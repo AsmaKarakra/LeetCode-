@@ -35,8 +35,6 @@ public class Playground {
 
         BFS_queue.offer(src);
 
-        List<Character> values = graph.get(src);
-
         while(!BFS_queue.isEmpty()){
             char currentNode = BFS_queue.poll();
             if(currentNode == dest){
