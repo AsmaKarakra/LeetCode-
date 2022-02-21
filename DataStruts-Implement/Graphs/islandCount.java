@@ -26,7 +26,7 @@ public class Playground {
         };
 
         int result = islandCount(grid);
-        System.out.println(result);
+        System.out.println(result); //3 
     }
 
 
