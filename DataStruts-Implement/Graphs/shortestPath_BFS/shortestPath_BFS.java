@@ -1,13 +1,9 @@
-
 import java.util.*;
 
 /**
-
-Time: O(E) where E is the number of edges in the graph
-
-Space: O(V) Vertices within the graph 
-
-**/
+ Time: O(E) where E is the number of edges in the graph
+ Space: O(V) Vertices within the graph
+ **/
 
 public class Playground {
 
@@ -18,7 +14,6 @@ public class Playground {
 
         /**
          Compute Shortest Path:
-
          Write a function, shortestPath, that takes in a vector of edges for an
          undirected graph and two nodes (nodeA, nodeB). The function should return
          the length of the shortest path between A and B.
@@ -26,7 +21,7 @@ public class Playground {
          If there is no path between A and B, then return -1.
          */
 
-       //Edge list:
+        //Edge list:
 
         String [][] edges = {
                 {"w", "x"},
@@ -64,6 +59,7 @@ public class Playground {
 
     public static int findShortestPath(String start, String end){
         int pathCount = 0;
+        int minCount = Integer.MAX_VALUE;
         HashSet<String> visited = new HashSet<>();
 
         //Queue for BFS
@@ -72,33 +68,46 @@ public class Playground {
         shortestPathQueue.offer(start);
 
         while(!shortestPathQueue.isEmpty()){
-            String currentNode = shortestPathQueue.poll();
-            visited.add(currentNode);
 
-            if(currentNode.equals(end)){
-                return pathCount;
-            }
+            int queueSize = shortestPathQueue.size();
+            
+            //Increment path count after you empty out queue at each level 
 
-            pathCount++;
+            for(int i = 0; i<queueSize; i++){
+                String currentNode = shortestPathQueue.poll();
+                visited.add(currentNode);
 
-            HashSet<String> neighbors = graph.get(currentNode);
+                HashSet<String> neighbors = graph.get(currentNode);
 
-            if(neighbors.size() == 0){
-                continue;
-            }
-
-            for(String node: neighbors){
-
-                //if already visited - dont add to queue
-
-                if(visited.contains(node)){
+                if(neighbors.size() == 0){
                     continue;
                 }
 
-                shortestPathQueue.offer(node);
-            }
-        }
+                for(String node: neighbors){
 
-        return -1;
+                    //if already visited - dont add to queue
+
+                    if(visited.contains(node)){
+                        continue;
+                    }
+
+                    shortestPathQueue.offer(node);
+
+                }
+
+                if(currentNode.equals(end)){
+                    minCount = Math.min(pathCount, minCount);
+                }
+            }
+
+            pathCount++;
+        }
+        
+        
+        //If end is not visited, no path exists in graph 
+        if(!visited.contains(end)){
+            return -1;
+        }
+        return minCount;
     }
 }
