@@ -24,9 +24,9 @@ public class Playground {
         /**
 
          * Problem Statement:
-         Write a function, treeSum, that takes in a pointer to the root
-         of a binary tree that contains number values.
-         The function should return the total sum of all values in the tree.
+         Write a function,, that takes in a pointer to the root
+         of a binary tree that contains number values and a target
+         The function should return a boolean if target is in tree
 
                 3
              /    \
