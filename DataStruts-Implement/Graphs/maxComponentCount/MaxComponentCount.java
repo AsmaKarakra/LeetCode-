@@ -53,7 +53,7 @@ public class Playground {
 
             boolean newComp = DFS(visited, entry.getKey());
 
-            //If new component was explored, incremenet count
+         
             if (newComp == true) {
                 maxCount = Math.max(count, maxCount);
                 count = 0;
@@ -70,6 +70,7 @@ public class Playground {
             return false;
         }
 
+        //If new component was explored, incremenet count
         count++;
 
         visited.add(key);
