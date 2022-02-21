@@ -1,3 +1,7 @@
+public class Playground{
+        
+public static HashMap<Integer, HashSet<Integer>> graph = new HashMap<>();
+
 public static int countConnectedComponents(){
 
         int currentCount = Integer.MIN_VALUE;
